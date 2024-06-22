@@ -1,11 +1,13 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
 
 function App() {
   return (
     <>
-      <h1>Hello from Scope Labs Assessment app</h1>
-      <Routes></Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   )
 }

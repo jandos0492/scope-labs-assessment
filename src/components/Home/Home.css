@@ -1,0 +1,27 @@
+.home-container {
+    padding: 20px;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    translate: transformX(-50%);
+    margin-bottom: 30px;
+}
+
+.video-grid {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 40px;
+}
