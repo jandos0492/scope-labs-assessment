@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom"
 import { InfinitySpin } from "react-loader-spinner";
 import logo from "../../assets/FULL_LOGO_DARK.png";
-import VideoComponent from "../VideoComponent";
+import Videos from "../Videos";
+import Comments from "../Comments";
 import "./Home.css";
 
 const Home = () => {
@@ -41,7 +41,7 @@ const Home = () => {
             <div className="video-grid">
                 {videoData.length > 0 && (
                     videoData.map((video, index) => (
-                        <VideoComponent
+                        <Videos
                             key={index}
                             video={video}
                         />

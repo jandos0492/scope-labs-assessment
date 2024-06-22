@@ -23,5 +23,5 @@
     margin-top: 100px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 40px;
+    gap: 80px;
 }

@@ -1,9 +1,17 @@
 .video-card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 5px;
+    padding: 0 5px 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.video-card:hover {
+    transform: scale(1.05);
 }
 
 .video-card h3 {
@@ -16,4 +24,8 @@
     margin-top: 5px;
     font-size: 0.9em;
     color: #666;
+}
+
+.video-link {
+    text-decoration: none;
 }
