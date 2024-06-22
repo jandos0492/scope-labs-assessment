@@ -3,6 +3,8 @@ import ReactPlayer from "react-player";
 import { InfinitySpin } from "react-loader-spinner";
 import "./Videos.css";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faCircle, faComment } from "@fortawesome/free-solid-svg-icons";
 
 const Videos = ({ video }) => {
     const { title, video_url } = video;
@@ -10,6 +12,7 @@ const Videos = ({ video }) => {
     const [isReady, setIsReady] = useState(false);
     const [commentsData, setCommentsData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [commentsQty, setCommentsQty] = useState(0);
 
     useEffect(() => {
         if (isReady && playerRef.current) {
@@ -27,7 +30,10 @@ const Videos = ({ video }) => {
             try {
                 const commentsDataRes = await fetch(`/api/videos/comments?video_id=${video.id}`);
                 const commentsDataResult = await commentsDataRes.json();
-                setCommentsData(commentsDataResult);
+                if (commentsDataResult && commentsDataResult.comments) {
+                    setCommentsData(commentsDataResult);
+                    setCommentsQty(commentsDataResult.comments.length);
+                }
                 setLoading(false);
             } catch (err) {
                 console.error("Error fetching the comments data.", err);
@@ -39,10 +45,11 @@ const Videos = ({ video }) => {
 
     const latestComment = commentsData.comments?.reduce((latest, comment) => {
         return new Date(comment.created_at) > new Date(latest.created_at) ? comment : latest;
-    }, commentsData.comments ? commentsData.comments[0] : null);
+    }, commentsData.comments?.[0] || null);
 
-    const getLatestCommentDate = (comment) => {
-        const commentDate = new Date(comment.created_at);
+    const getLatestCommentDate = () => {
+        if (!latestComment) return null;
+        const commentDate = new Date(latestComment.created_at);
         const now = new Date();
         const diffInMilliseconds = now - commentDate;
         const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
@@ -75,13 +82,20 @@ const Videos = ({ video }) => {
                     height="300px"
                     onReady={handleReady}
                 />
-                <h3>{title}</h3>
-                {latestComment && (
-                    <>
-                        <p>Author: {latestComment.user_id}</p>
-                        <p>Date: {getLatestCommentDate(latestComment)}</p>
-                    </>
-                )}
+                <div className="video-text-content">
+                    <h3 className="video-title">{title}</h3>
+                    {latestComment && (
+                        <>
+                            <p>
+                                <FontAwesomeIcon className="user-icon" icon={faUser} />
+                                {latestComment.user_id}
+                                <FontAwesomeIcon className="dot-icon" icon={faCircle} />
+                                {getLatestCommentDate()}
+                            </p>
+                            <p><FontAwesomeIcon className="comment-icon" icon={faComment} /> {commentsQty} Comments</p>
+                        </>
+                    )}
+                </div>
             </Link>
         </div>
     );
