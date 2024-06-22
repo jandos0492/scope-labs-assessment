@@ -1,0 +1,82 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 10px;
+    color: #aaa;
+}
+
+.input-with-icon {
+    width: 100%;
+    padding: 8px;
+    padding-left: 35px;
+    bottom: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-with-icon::placeholder {
+    padding-left: 10px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-button {
+    background-color: #ddd;
+    color: #333;
+}
+
+.cancel-button:hover {
+    background-color: #ccc;
+}
+
+.upload-button {
+    background-color: #00B6EF;
+    color: white;
+}
+
+.upload-button:hover {
+    background-color: #0389b2;
+}
