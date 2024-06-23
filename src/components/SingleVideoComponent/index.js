@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { InfinitySpin } from "react-loader-spinner";
 import UploadModal from "../UploadModal";
 import Comments from "../Comments";
+import VideoMetaInfo from "../VideoMetaInfo";
 import ReactPlayer from "react-player";
 import logo from "../../assets/FULL_LOGO_DARK.png";
 import "./SingleVideoComponent.css";
@@ -14,10 +15,11 @@ const SingleVideoComponent = () => {
     const [videoUrl, setVideoUrl] = useState("");
     const [description, setDescription] = useState("");
     const [title, setTitle] = useState("");
+    const [createdAt, setCreatedAt] = useState("");
+    const [userId, setUserId] = useState("");
     const [loading, setLoading] = useState(true);
     const [restVideos, setRestVideos] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    console.log(restVideos.length);
 
     const { id } = useParams();
 
@@ -31,6 +33,8 @@ const SingleVideoComponent = () => {
                 setVideoUrl(video.video_url);
                 setTitle(video.title);
                 setDescription(video.description);
+                setCreatedAt(video.created_at);
+                setUserId(video.user_id);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching the single video data.", error);
@@ -101,7 +105,8 @@ const SingleVideoComponent = () => {
                         controls
                     />
                     <h2>{title}</h2>
-                    <p>{description}</p>
+                    <p className="video-description">{description}</p>
+                    <VideoMetaInfo videoId={id} userId={userId} createdAt={createdAt} />
                 </div>
                 <div className="rest-videos">
                     {restVideos.length > 0 && (

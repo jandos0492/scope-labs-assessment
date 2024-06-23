@@ -13,8 +13,8 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!title || !videoUrl || !description || !videoUrl) {
-            console.error("All fields are required.");
+        if (!title || !videoUrl || !description) {
+            alert("All fields are required.");
             return;
         }
 
