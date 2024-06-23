@@ -13,13 +13,18 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!title || !videoUrl || !description || !videoUrl) {
+            console.error("All fields are required.");
+            return;
+        }
+
         try {
             const newVideoRes = await fetch("/api/videos", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title, video_url: videoUrl, description, user_id: "zhandos_aarinov"})
+                body: JSON.stringify({ title, video_url: videoUrl, description, user_id: "zhandos_arinovv"})
             });
 
             if (newVideoRes.ok) {

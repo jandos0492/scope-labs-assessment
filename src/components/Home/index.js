@@ -14,7 +14,7 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const videoDataRes = await fetch("/api/videos?user_id=zhandos_aarinov");
+                const videoDataRes = await fetch("/api/videos?user_id=zhandos_arinovv");
                 const videoDataResult = await videoDataRes.json();
                 setVideoData(videoDataResult.videos);
                 setLoading(false);

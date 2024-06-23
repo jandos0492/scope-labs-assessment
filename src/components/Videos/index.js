@@ -52,10 +52,18 @@ const Videos = ({ video }) => {
         const commentDate = new Date(latestComment.created_at);
         const now = new Date();
         const diffInMilliseconds = now - commentDate;
+        const diffInSeconds = Math.floor(diffInMilliseconds / 1000)
+        const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60))
         const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
         const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
 
-        if (diffInHours < 24) {
+        if (diffInSeconds < 60) {
+            return `${diffInSeconds} seconds ago`
+        }
+        else if (diffInMinutes < 60) {
+            return `${diffInMinutes} minutes ago`
+        }
+        else if (diffInHours < 24) {
             return `${diffInHours} hours ago`;
         } else if (diffInDays < 7) {
             return `${diffInDays} days ago`;
