@@ -27,6 +27,10 @@ const Home = () => {
         fetchData();
     }, []);
 
+    const addNewVideo = (newVideo) => {
+        setVideoData((prevVideoData) => [newVideo, ...prevVideoData])
+    }
+
     if (loading) {
         return (
             <div className="loading">
@@ -41,7 +45,7 @@ const Home = () => {
                 <img className="logo" src={logo} alt="Logo" />
                 <button className="upload-button modal-button" onClick={() => setIsModalOpen(true)}>Upload</button>
             </header>
-            <UploadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            <UploadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} addNewVideo={addNewVideo} />
             <div className="video-grid">
                 {videoData.length > 0 && (
                     videoData.map((video, index) => (

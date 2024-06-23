@@ -1,20 +1,41 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faT, faLink } from "@fortawesome/free-solid-svg-icons";
+import { faT, faLink, faAudioDescription } from "@fortawesome/free-solid-svg-icons";
 import "./UploadModal.css";
 
-const UploadModal = ({ isOpen, onClose }) => {
+const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
     const [title, setTitle] = useState("");
     const [videoUrl, setVideoUrl] = useState("");
+    const [description, setDescription] = useState("");
 
     if (!isOpen) return null;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Video Title:", title);
-        console.log("Video URL", videoUrl);
+
+        try {
+            const newVideoRes = await fetch("/api/videos", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ title, video_url: videoUrl, description, user_id: "zhandos_aarinov"})
+            });
+
+            if (newVideoRes.ok) {
+                const newVideoResult = await newVideoRes.json();
+                addNewVideo(newVideoResult);
+            } else {
+                const errorResponse = await newVideoRes.json();
+                console.error("Failed new video upload.", errorResponse);
+            }
+        } catch (error) {
+            console.error("Error fetch a new video upload", error);
+        }
+
         setTitle("");
         setVideoUrl("");
+        setDescription("");
         onClose();
     };
 
@@ -44,6 +65,19 @@ const UploadModal = ({ isOpen, onClose }) => {
                                 onChange={(e) => setVideoUrl(e.target.value)}
                                 placeholder="https://www.your-video-link.com"
                                 className="input-with-icon"
+                            />
+                        </div>
+                    </div>
+                    <div className="input-group">
+                        <div className="input-container">
+                            <FontAwesomeIcon icon={faAudioDescription} id="url-icon" className="input-icon" />
+                            <textarea
+                                type="text"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                placeholder="Video description"
+                                className="input-with-icon"
+                                rows="3"
                             />
                         </div>
                     </div>

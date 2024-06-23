@@ -32,15 +32,15 @@
 .input-icon {
     position: absolute;
     left: 10px;
-    color: #aaa;
+    color: #c7c5c5;
 }
 
 .input-with-icon {
     width: 100%;
     padding: 8px;
     padding-left: 35px;
-    bottom: 1px solid #ccc;
-    border-radius: 4px;
+    bottom: 1px solid #c7c5c5;
+    border-radius: 20px;
 }
 
 .input-with-icon::placeholder {
@@ -79,4 +79,14 @@
 
 .upload-button:hover {
     background-color: #0389b2;
+}
+
+textarea.input-with-icon {
+    padding-top: calc(10% - 0.8em);
+    padding-bottom: calc(10% - 0.8em);
+    overflow: hidden;
+}
+
+textarea::placeholder {
+    padding-top: 14px;
 }
