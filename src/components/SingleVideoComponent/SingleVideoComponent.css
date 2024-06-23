@@ -18,16 +18,15 @@
     margin: 150px;
     height: 600px;
     border-radius: 20px;
+    background-color: #cdf3eb;
 }
 
 .rest-videos {
     flex: 1;
     display: flex;
     flex-direction: column;
-    text-align: center;
     gap: 20px;
     padding: 20px;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     background-color: #fff;
     margin-top: 150px;
     border-radius: 20px;
@@ -38,18 +37,6 @@
     padding: 10px;
     background-color: #96E9DB;
     border-radius: 20px;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.modal-button {
-    right: 20px;
-    top: 20px;
 }
 
 .rest-video-item:last-child {
@@ -75,4 +62,9 @@
 
 .rest-videos-title {
     font-size: 18px;
+    font-weight: 600;
+}
+
+.rest-video-text-content {
+    margin-left: 20px;
 }

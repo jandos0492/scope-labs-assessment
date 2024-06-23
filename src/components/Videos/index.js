@@ -1,18 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
 import ReactPlayer from "react-player";
-import { InfinitySpin } from "react-loader-spinner";
-import "./Videos.css";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faCircle, faComment } from "@fortawesome/free-solid-svg-icons";
+import Comments from "../Comments";
+import "./Videos.css";
 
 const Videos = ({ video }) => {
     const { title, video_url } = video;
     const playerRef = useRef(null);
     const [isReady, setIsReady] = useState(false);
-    const [commentsData, setCommentsData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [commentsQty, setCommentsQty] = useState(0);
 
     useEffect(() => {
         if (isReady && playerRef.current) {
@@ -24,61 +19,6 @@ const Videos = ({ video }) => {
     const handleReady = () => {
         setIsReady(true);
     };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const commentsDataRes = await fetch(`/api/videos/comments?video_id=${video.id}`);
-                const commentsDataResult = await commentsDataRes.json();
-                if (commentsDataResult && commentsDataResult.comments) {
-                    setCommentsData(commentsDataResult);
-                    setCommentsQty(commentsDataResult.comments.length);
-                }
-                setLoading(false);
-            } catch (err) {
-                console.error("Error fetching the comments data.", err);
-                setLoading(false);
-            }
-        }
-        fetchData();
-    }, [video.id]);
-
-    const latestComment = commentsData.comments?.reduce((latest, comment) => {
-        return new Date(comment.created_at) > new Date(latest.created_at) ? comment : latest;
-    }, commentsData.comments?.[0] || null);
-
-    const getLatestCommentDate = () => {
-        if (!latestComment) return null;
-        const commentDate = new Date(latestComment.created_at);
-        const now = new Date();
-        const diffInMilliseconds = now - commentDate;
-        const diffInSeconds = Math.floor(diffInMilliseconds / 1000)
-        const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60))
-        const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
-        const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
-
-        if (diffInSeconds < 60) {
-            return `${diffInSeconds} seconds ago`
-        }
-        else if (diffInMinutes < 60) {
-            return `${diffInMinutes} minutes ago`
-        }
-        else if (diffInHours < 24) {
-            return `${diffInHours} hours ago`;
-        } else if (diffInDays < 7) {
-            return `${diffInDays} days ago`;
-        } else {
-            return commentDate.toDateString();
-        }
-    };
-
-    if (loading) {
-        return (
-            <div className="loading">
-                <InfinitySpin width="200" color="black" />
-            </div>
-        );
-    }
 
     return (
         <div className="video-card">
@@ -92,21 +32,11 @@ const Videos = ({ video }) => {
                 />
                 <div className="video-text-content">
                     <h3 className="video-title">{title}</h3>
-                    {latestComment && (
-                        <>
-                            <p>
-                                <FontAwesomeIcon className="user-icon" icon={faUser} />
-                                {latestComment.user_id}
-                                <FontAwesomeIcon className="dot-icon" icon={faCircle} />
-                                {getLatestCommentDate()}
-                            </p>
-                            <p><FontAwesomeIcon className="comment-icon" icon={faComment} /> {commentsQty} Comments</p>
-                        </>
-                    )}
+                    <Comments videoId={video.id} />
                 </div>
             </Link>
         </div>
     );
-}
+};
 
 export default Videos;

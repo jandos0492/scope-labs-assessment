@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { InfinitySpin } from "react-loader-spinner";
 import UploadModal from "../UploadModal";
+import Comments from "../Comments";
 import ReactPlayer from "react-player";
 import logo from "../../assets/FULL_LOGO_DARK.png";
 import "./SingleVideoComponent.css";
@@ -88,13 +89,12 @@ const SingleVideoComponent = () => {
                 <Link to="/">
                     <img className="logo" src={logo} alt="Logo" />
                 </Link>
-                <button className="upload-button modal-button" onClick={() => setIsModalOpen(true)}>Upload</button>
+                <button className="modal-button" onClick={() => setIsModalOpen(true)}>Upload</button>
             </header>
             <UploadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} addNewVideo={addNewVideo} />
             <div className="single-video-page">
                 <div className="main-video">
                     <ReactPlayer
-                        ref={playerRef}
                         url={videoUrl}
                         width="100%"
                         height="450px"
@@ -115,7 +115,10 @@ const SingleVideoComponent = () => {
                                         height="200px"
                                         onReady={() => handleReady(index)}
                                     />
-                                    <p className="rest-videos-title">{video.title}</p>
+                                    <div className="rest-video-text-content">
+                                        <p className="rest-videos-title">{video.title}</p>
+                                        <Comments videoId={video.id} />
+                                    </div>
                                 </div>
                             </Link>
                         ))
