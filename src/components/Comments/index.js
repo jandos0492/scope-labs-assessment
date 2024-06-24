@@ -59,7 +59,9 @@ const Comments = ({ videoId }) => {
                         <FontAwesomeIcon className="dot-icon" icon={faCircle} />
                         {getLatestCommentDate()}
                     </p>
-                    <p><FontAwesomeIcon className="comment-icon" icon={faComment} /> {commentsQty} Comments</p>
+                    <div className="comments-qty">
+                        <p><FontAwesomeIcon className="comment-icon" icon={faComment} /> {commentsQty} Comments</p>
+                    </div>
                 </>
             )}
         </div>

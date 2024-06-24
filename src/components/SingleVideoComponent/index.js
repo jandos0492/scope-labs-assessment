@@ -7,6 +7,7 @@ import VideoMetaInfo from "../VideoMetaInfo";
 import ReactPlayer from "react-player";
 import logo from "../../assets/FULL_LOGO_DARK.png";
 import "./SingleVideoComponent.css";
+import SingleVideoComments from "../SingleVideoComments";
 
 const SingleVideoComponent = () => {
     const playerRef = useRef(null);
@@ -107,6 +108,7 @@ const SingleVideoComponent = () => {
                     <h2>{title}</h2>
                     <p className="video-description">{description}</p>
                     <VideoMetaInfo videoId={id} userId={userId} createdAt={createdAt} />
+                    <SingleVideoComments videoId={id} />
                 </div>
                 <div className="rest-videos">
                     {restVideos.length > 0 && (

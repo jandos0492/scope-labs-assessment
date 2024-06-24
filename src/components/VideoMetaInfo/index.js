@@ -32,7 +32,9 @@ const VideoMetaInfo = ({ videoId, userId, createdAt }) => {
                 {` ${videoUploadedDate.toDateString()}`}
             </p>
             {commentsQty > 0 && (
-                <p><FontAwesomeIcon className="comment-icon" icon={faComment} /> {commentsQty} Comments</p>
+                <div className="comments-qty">
+                    <p><FontAwesomeIcon className="comment-icon" icon={faComment} /> {commentsQty} Comments</p>
+                </div>
             )}
         </div>
     )

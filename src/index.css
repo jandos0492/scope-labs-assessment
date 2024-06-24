@@ -4,3 +4,7 @@
     align-items: center;
     height: 100vh;
 }
+
+.comments-qty p {
+    color: #7e838b !important;
+}

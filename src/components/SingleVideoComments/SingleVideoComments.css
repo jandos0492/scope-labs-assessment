@@ -1,0 +1,17 @@
+.single-video-comments-qty {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.add-comment-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    background-color: #00B6EF;
+    color: white;
+    margin-top: 20px;
+}
