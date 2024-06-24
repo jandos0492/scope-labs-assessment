@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import "./SingleVideoComments.css";
 import AddCommentModal from "../AddCommentModal";
+import SingleVideoCommentsList from "../SingleVideoCommentsList";
 
 const SingleVideoComments = ({ videoId }) => {
 
@@ -24,7 +25,7 @@ const SingleVideoComments = ({ videoId }) => {
 
     const addNewComment = (newComment) => {
         setCommentsData((prevCommentsData) => [newComment, ...prevCommentsData]);
-    }
+    };
 
     return (
         <div className="single-video-comments-container">
@@ -35,8 +36,9 @@ const SingleVideoComments = ({ videoId }) => {
                     {commentsData.length}
                 </p>
             )}
-            <button className="add-comment-button" onClick={() => setIsModalOpen(true)} videoId={videoId}>Add Comment</button>
-            <AddCommentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} addNewComment={addNewComment} />
+            <button className="add-comment-button" onClick={() => setIsModalOpen(true)}>Add Comment</button>
+            <AddCommentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} addNewComment={addNewComment} videoId={videoId} />
+            <SingleVideoCommentsList commentsData={commentsData} />
         </div>
     )
 };

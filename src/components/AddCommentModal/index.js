@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import "./AddCommentModal.css";
@@ -6,13 +6,6 @@ import "./AddCommentModal.css";
 const AddCommentModal = ({ isOpen, onClose, addNewComment, videoId }) => {
     const [commentContent, setCommentContent] = useState("");
     const [userId, setUserId] = useState("");
-
-    useEffect(() => {
-        if (!isOpen) {
-            setCommentContent("");
-            setUserId("");
-        }
-    }, [isOpen]);
 
     if (!isOpen) return null;
 
@@ -34,8 +27,18 @@ const AddCommentModal = ({ isOpen, onClose, addNewComment, videoId }) => {
             });
 
             if (newCommentRes.ok) {
-                const newCommentResult = await newCommentRes.json();
-                addNewComment(newCommentResult);
+                const newComment = {
+                    id: new Date().getTime().toString(),
+                    created_at: new Date().toISOString(),
+                    content: commentContent,
+                    user_id: userId,
+                    video_id: videoId
+                };
+
+                addNewComment(newComment);
+                setCommentContent("");
+                setUserId("");
+                onClose();
             } else {
                 const errorResponse = await newCommentRes.json();
                 console.error("Failed to add new comment.", errorResponse);
@@ -43,10 +46,6 @@ const AddCommentModal = ({ isOpen, onClose, addNewComment, videoId }) => {
         } catch (error) {
             console.error("Error fetching add new comment.", error);
         }
-
-        setCommentContent("");
-        setUserId("");
-        onClose();
     };
 
     return (
@@ -61,7 +60,7 @@ const AddCommentModal = ({ isOpen, onClose, addNewComment, videoId }) => {
                                 type="text"
                                 value={userId}
                                 onChange={(e) => setUserId(e.target.value)}
-                                placeholder="User_id ex: john_smith"
+                                placeholder="Your user_id ex: john_smith"
                                 className="input-with-icon"
                             />
                         </div>
@@ -70,10 +69,9 @@ const AddCommentModal = ({ isOpen, onClose, addNewComment, videoId }) => {
                         <div className="input-container">
                             <FontAwesomeIcon icon={faSquarePlus} className="input-icon" />
                             <textarea
-                                type="text"
                                 value={commentContent}
                                 onChange={(e) => setCommentContent(e.target.value)}
-                                placeholder="Comment content"
+                                placeholder="Your comment content"
                                 className="input-with-icon"
                                 rows="3"
                             />
@@ -86,7 +84,7 @@ const AddCommentModal = ({ isOpen, onClose, addNewComment, videoId }) => {
                 </form>
             </div>
         </div>
-    )
+    );
 };
 
 export default AddCommentModal;

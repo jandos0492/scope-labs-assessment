@@ -24,12 +24,24 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title, video_url: videoUrl, description, user_id: "zhandos_arinovv"})
+                body: JSON.stringify({ title, video_url: videoUrl, description, user_id: "zhandos_arinovv" })
             });
 
             if (newVideoRes.ok) {
-                const newVideoResult = await newVideoRes.json();
-                addNewVideo(newVideoResult);
+                const newVideo = {
+                    id: new Date().getTime().toString(),
+                    title,
+                    video_url: videoUrl,
+                    description,
+                    user_id: "zhandos_arinovv",
+                    created_at: new Date().toISOString(),
+                };
+
+                addNewVideo(newVideo);
+                setTitle("");
+                setVideoUrl("");
+                setDescription("");
+                onClose();
             } else {
                 const errorResponse = await newVideoRes.json();
                 console.error("Failed new video upload.", errorResponse);
@@ -37,11 +49,6 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
         } catch (error) {
             console.error("Error fetch a new video upload", error);
         }
-
-        setTitle("");
-        setVideoUrl("");
-        setDescription("");
-        onClose();
     };
 
     return (
@@ -88,7 +95,7 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
                     </div>
                     <div className="modal-buttons">
                         <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
-                        <button className="upload-button" type="submit" onClick={handleSubmit}>Upload</button>
+                        <button className="upload-button" type="submit">Upload</button>
                     </div>
                 </form>
             </div>
