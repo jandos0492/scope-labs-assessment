@@ -14,7 +14,7 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
         e.preventDefault();
 
         if (!title || !videoUrl || !description) {
-            alert("All fields are required.");
+            alert("All fields are required to add the video.");
             return;
         }
 
@@ -47,7 +47,7 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <h2>Upload a video</h2>
+                <h2 className="modal-header">Upload a video</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <div className="input-container">

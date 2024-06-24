@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle, faComment } from "@fortawesome/free-solid-svg-icons";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import "./SingleVideoComments.css";
+import AddCommentModal from "../AddCommentModal";
 
 const SingleVideoComments = ({ videoId }) => {
 
@@ -34,7 +35,8 @@ const SingleVideoComments = ({ videoId }) => {
                     {commentsData.length}
                 </p>
             )}
-            <button className="add-comment-button" onClick={() => setIsModalOpen(true)}>Add Comment</button>
+            <button className="add-comment-button" onClick={() => setIsModalOpen(true)} videoId={videoId}>Add Comment</button>
+            <AddCommentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} addNewComment={addNewComment} />
         </div>
     )
 };
