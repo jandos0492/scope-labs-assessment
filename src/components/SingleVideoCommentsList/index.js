@@ -12,11 +12,6 @@ const SingleVideoCommentsList = ({ commentsData }) => {
 
         const commentDate = new Date(dateString);
 
-        if (isNaN(commentDate)) {
-            console.error("Invalid date string:", dateString);
-            return "Invalid Date";
-        }
-
         const now = new Date();
         const diffInMilliseconds = now - commentDate;
         const diffInSeconds = Math.floor(diffInMilliseconds / 1000);
@@ -36,14 +31,6 @@ const SingleVideoCommentsList = ({ commentsData }) => {
             return commentDate.toLocaleDateString();
         }
     };
-
-    if (!commentsData || commentsData.length === 0) {
-        return (
-            <div className="comments-list">
-                <p>No comments available</p>
-            </div>
-        );
-    }
 
     return (
         <div className="comments-list">
