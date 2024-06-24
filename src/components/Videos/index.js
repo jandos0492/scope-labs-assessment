@@ -20,16 +20,26 @@ const Videos = ({ video }) => {
         setIsReady(true);
     };
 
+    const isYouTubeUrl = (url) => {
+        const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
+        return isYouTube;
+    };
+
     return (
         <div className="video-card">
             <Link className="video-link" to={`/${video.id}`}>
-                <ReactPlayer
-                    ref={playerRef}
-                    url={video_url}
-                    width="100%"
-                    height="300px"
-                    onReady={handleReady}
-                />
+                <div className="video-wrapper">
+                    <ReactPlayer
+                        ref={playerRef}
+                        url={video_url}
+                        width="100%"
+                        height="100%"
+                        onReady={handleReady}
+                        light={isYouTubeUrl(video_url)}
+                        controls={false}
+                    />
+                    <div className="video-overlay"></div>
+                </div>
                 <div className="video-text-content">
                     <h3 className="video-title">{title}</h3>
                     <Comments videoId={video.id} />

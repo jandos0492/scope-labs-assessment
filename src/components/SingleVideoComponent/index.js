@@ -76,6 +76,12 @@ const SingleVideoComponent = () => {
         }
     };
 
+    const isYouTubeUrl = (url) => {
+        const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
+        return isYouTube;
+    };
+
+
     const addNewVideo = (newVideo) => {
         setRestVideos((prevVideos) => [newVideo, ...prevVideos]);
     };
@@ -115,13 +121,18 @@ const SingleVideoComponent = () => {
                         restVideos.map((video, index) => (
                             <Link className="single-video-link" key={video.id} to={`/${video.id}`}>
                                 <div className="rest-video-item">
-                                    <ReactPlayer
-                                        ref={(element) => { playerRefs.current[index] = element; }}
-                                        url={video.video_url}
-                                        width="100%"
-                                        height="200px"
-                                        onReady={() => handleReady(index)}
-                                    />
+                                    <div className="video-wrapper">
+                                        <ReactPlayer
+                                            ref={(element) => { playerRefs.current[index] = element; }}
+                                            url={video.video_url}
+                                            width="100%"
+                                            height="200px"
+                                            onReady={() => handleReady(index)}
+                                            light={isYouTubeUrl(video.video_url)}
+                                            controls={false}
+                                        />
+                                        <div className="video-overlay"></div>
+                                    </div>
                                     <div className="rest-video-text-content">
                                         <p className="rest-videos-title">{video.title}</p>
                                         <Comments videoId={video.id} />

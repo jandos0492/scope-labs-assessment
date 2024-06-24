@@ -10,8 +10,6 @@ const Home = () => {
     const [videoData, setVideoData] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    console.log(videoData)
-
     useEffect(() => {
         const fetchData = async () => {
             try {
