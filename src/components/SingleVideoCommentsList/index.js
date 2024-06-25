@@ -36,7 +36,7 @@ const SingleVideoCommentsList = ({ commentsData }) => {
         <div className="comments-list">
             {commentsData.length > 0 && (
                 commentsData.map((comment, index) => (
-                    <div key={index}>
+                    <div className="comment-info" key={index}>
                         <p>
                             <FontAwesomeIcon className="user-icon" icon={faUser} />
                             {comment.user_id}

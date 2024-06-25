@@ -21,7 +21,7 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    max-height: 80vh;
+    max-height: 70vh;
     overflow-y: auto;
 }
 
@@ -30,6 +30,39 @@
     margin: 0;
     padding: 0;
     margin-top: 20px;
+}
+
+.title-edit-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.video-title {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.edit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    background-color: #FFD700;
+    color: black;
+}
+
+.edit-button:hover {
+    background-color: #FFC107;
+}
+
+.video-description {
+    margin-top: 10px;
 }
 
 .rest-videos {

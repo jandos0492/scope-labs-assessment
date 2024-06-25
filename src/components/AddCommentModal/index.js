@@ -71,7 +71,7 @@ const AddCommentModal = ({ isOpen, onClose, addNewComment, videoId }) => {
                             <textarea
                                 value={commentContent}
                                 onChange={(e) => setCommentContent(e.target.value)}
-                                placeholder="Your comment content"
+                                placeholder="Your comment"
                                 className="input-with-icon"
                                 rows="3"
                             />

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { InfinitySpin } from "react-loader-spinner";
 import UploadModal from "../UploadModal";
+import EditVideoModal from "../EditVideoModal";
 import Comments from "../Comments";
 import VideoMetaInfo from "../VideoMetaInfo";
 import ReactPlayer from "react-player";
@@ -20,9 +21,12 @@ const SingleVideoComponent = () => {
     const [userId, setUserId] = useState("");
     const [loading, setLoading] = useState(true);
     const [restVideos, setRestVideos] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     const { id } = useParams();
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     useEffect(() => {
         const fetchSingleVideoData = async () => {
@@ -81,9 +85,13 @@ const SingleVideoComponent = () => {
         return isYouTube;
     };
 
-
     const addNewVideo = (newVideo) => {
         setRestVideos((prevVideos) => [newVideo, ...prevVideos]);
+    };
+
+    const updateVideoDetails = (updatedVideo) => {
+        setTitle(updatedVideo.title);
+        setDescription(updatedVideo.description);
     };
 
     if (loading) {
@@ -100,9 +108,17 @@ const SingleVideoComponent = () => {
                 <Link to="/">
                     <img className="logo" src={logo} alt="Logo" />
                 </Link>
-                <button className="modal-button" onClick={() => setIsModalOpen(true)}>Upload</button>
+                <button className="modal-button" onClick={() => setIsUploadModalOpen(true)}>Upload</button>
             </header>
-            <UploadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} addNewVideo={addNewVideo} />
+            <UploadModal isOpen={isUploadModalOpen} onClose={() => setIsUploadModalOpen(false)} addNewVideo={addNewVideo} />
+            <EditVideoModal
+                isOpen={isEditModalOpen}
+                onClose={() => setIsEditModalOpen(false)}
+                videoId={id}
+                currentTitle={title}
+                currentDescription={description}
+                updateVideoDetails={updateVideoDetails}
+            />
             <div className="single-video-page">
                 <div className="main-video">
                     <ReactPlayer
@@ -111,7 +127,10 @@ const SingleVideoComponent = () => {
                         height="450px"
                         controls
                     />
-                    <h2>{title}</h2>
+                    <div className="title-edit-container">
+                        <h2 className="video-title">{title}</h2>
+                        <button className="edit-button" onClick={() => setIsEditModalOpen(true)}>Edit video</button>
+                    </div>
                     <p className="video-description">{description}</p>
                     <VideoMetaInfo videoId={id} userId={userId} createdAt={createdAt} />
                     <SingleVideoComments videoId={id} />

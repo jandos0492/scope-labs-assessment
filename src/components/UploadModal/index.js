@@ -94,8 +94,10 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
                         </div>
                     </div>
                     <div className="modal-buttons">
-                        <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
-                        <button className="upload-button" type="submit">Upload</button>
+                        {/* <button className="cancel-button" type="button" onClick={onClose}>Cancel</button>
+                        <button className="upload-button" type="submit">Upload</button> */}
+                        <button className="cancel-button" type="button" onClick={(e) => { e.stopPropagation(); onClose(); }}>Cancel</button>
+                        <button className="upload-button" type="submit" onClick={(e) => e.stopPropagation()}>Upload</button>
                     </div>
                 </form>
             </div>
