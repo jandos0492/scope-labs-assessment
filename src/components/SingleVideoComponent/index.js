@@ -53,7 +53,7 @@ const SingleVideoComponent = () => {
     useEffect(() => {
         const fetchAllVideos = async () => {
             try {
-                const response = await fetch("/api/videos?user_id=zhandos_arinovv");
+                const response = await fetch("/api/videos?user_id=zzhandos_arinov");
                 const result = await response.json();
                 const filteredVideos = result.videos.filter(video => video.id !== id);
                 setRestVideos(filteredVideos);
