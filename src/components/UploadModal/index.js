@@ -28,26 +28,31 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
             });
 
             if (newVideoRes.ok) {
-                const newVideo = {
-                    id: new Date().getTime().toString(),
-                    title,
-                    video_url: videoUrl,
-                    description,
-                    user_id: "zzhandos_arinov",
-                    created_at: new Date().toISOString(),
-                };
+                const refreshVideoListRes = await fetch("/api/videos?user_id=zzhandos_arinov");
+                if (refreshVideoListRes.ok) {
+                    const videoListData = await refreshVideoListRes.json();
+                    const newVideo = videoListData.videos.find(
+                        (video) => video.title === title && video.description === description
+                    );
 
-                addNewVideo(newVideo);
-                setTitle("");
-                setVideoUrl("");
-                setDescription("");
-                onClose();
+                    if (newVideo) {
+                        addNewVideo(newVideo);
+                        setTitle("");
+                        setVideoUrl("");
+                        setDescription("");
+                        onClose();
+                    } else {
+                        console.error("Newly created video not found in the fetched list.");
+                    }
+                } else {
+                    console.error("Failed to fetch the updated video list.");
+                }
             } else {
                 const errorResponse = await newVideoRes.json();
                 console.error("Failed new video upload.", errorResponse);
             }
         } catch (error) {
-            console.error("Error fetch a new video upload", error);
+            console.error("Error fetching a new video upload", error);
         }
     };
 
