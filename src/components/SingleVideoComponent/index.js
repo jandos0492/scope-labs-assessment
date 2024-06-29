@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { InfinitySpin } from "react-loader-spinner";
 import UploadModal from "../UploadModal";
 import EditVideoModal from "../EditVideoModal";
@@ -53,7 +55,7 @@ const SingleVideoComponent = () => {
     useEffect(() => {
         const fetchAllVideos = async () => {
             try {
-                const response = await fetch("/api/videos?user_id=zzhandos_arinov");
+                const response = await fetch("/api/videos?user_id=jandos_arinovv");
                 const result = await response.json();
                 const filteredVideos = result.videos.filter(video => video.id !== id);
                 setRestVideos(filteredVideos);
@@ -105,6 +107,9 @@ const SingleVideoComponent = () => {
     return (
         <div className="single-video-container">
             <header className="header">
+                <Link to="/" className="back-button">
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                </Link>
                 <Link to="/">
                     <img className="logo" src={logo} alt="Logo" />
                 </Link>

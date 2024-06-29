@@ -24,11 +24,11 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title, video_url: videoUrl, description, user_id: "zzhandos_arinov" })
+                body: JSON.stringify({ title, video_url: videoUrl, description, user_id: "jandos_arinovv" })
             });
 
             if (newVideoRes.ok) {
-                const refreshVideoListRes = await fetch("/api/videos?user_id=zzhandos_arinov");
+                const refreshVideoListRes = await fetch("/api/videos?user_id=jandos_arinovv");
                 if (refreshVideoListRes.ok) {
                     const videoListData = await refreshVideoListRes.json();
                     const newVideo = videoListData.videos.find(

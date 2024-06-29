@@ -15,7 +15,7 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const videoDataRes = await fetch("/api/videos?user_id=zzhandos_arinov");
+                const videoDataRes = await fetch("/api/videos?user_id=jandos_arinovv");
                 const videoDataResult = await videoDataRes.json();
                 setVideoData(videoDataResult.videos);
                 setFilteredVideoData(videoDataResult.videos);

@@ -22,9 +22,7 @@ const Comments = ({ videoId }) => {
         fetchData();
     }, [videoId]);
 
-    const latestComment = commentsData.reduce((latest, comment) => {
-        return new Date(comment.created_at) > new Date(latest.created_at) ? comment : latest;
-    }, commentsData[0] || null);
+    const latestComment = commentsData[0]
 
     const getLatestCommentDate = () => {
         if (!latestComment) return null;
