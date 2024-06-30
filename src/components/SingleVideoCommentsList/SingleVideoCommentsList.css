@@ -8,7 +8,9 @@
     padding: 10px 20px;
     border-radius: 15px;
     margin: 0 10px 10px 10px;
-    line-height: 0.2;
+    line-height: 1;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 .comments-list p {

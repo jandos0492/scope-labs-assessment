@@ -45,6 +45,22 @@
     margin-right: 20px;
 }
 
+.single-component-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 2;
+}
+
+.single-component-video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+
 .edit-button {
     padding: 10px 20px;
     border: none;
@@ -118,4 +134,130 @@
 
 .back-button {
     font-size: 24px;
+}
+
+
+/* media queries */
+@media screen and (max-width: 900px) {
+    .rest-videos-title {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .main-video {
+        flex: 1.5;
+    }
+
+    .add-comment-button {
+        font-size: 12px !important;
+    }
+
+    .edit-button {
+        font-size: 12px;
+    }
+
+    .rest-video-text-content {
+        margin: 0;
+    }
+
+    .comments-section p {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .single-component-video-title {
+        font-size: 18px;
+    }
+
+    .video-description {
+        font-size: 14px;
+    }
+
+    .video-meta-info-container p {
+        font-size: 14px;
+    }
+
+    .single-video-comments-qty {
+        font-size: 16px !important;
+    }
+
+    .comment-info p {
+        font-size: 14px;
+    }
+
+    .single-component-video-wrapper {
+        height: 220px;
+    }
+
+    .single-video-page {
+        margin-top: 60px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .single-video-page {
+        flex-direction: column;
+    }
+
+    .main-video {
+        width: 90%;
+    }
+
+    .rest-videos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 20px 0 0 0;
+    }
+
+    .rest-video-item {
+        width: 86%;
+        height: 90%;
+    }
+
+    .single-video-page {
+        margin-top: 20px;
+    }
+
+    .back-button {
+        font-size: 16px;
+    }
+
+    .single-video-page {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .rest-videos-title {
+        font-size: 14px;
+    }
+
+    .comments-section p {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .add-comment-button {
+        font-size: 10px;
+    }
+
+    .edit-button {
+        font-size: 10px;
+    }
+
+    .dot-icon {
+        margin: 0 5px 4px 5px;
+        font-size: 3px;
+    }
+
+    .user-icon {
+        margin: 0 5px;
+    }
+
+    .comments-section p {
+        font-size: 11px;
+    }
 }

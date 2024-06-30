@@ -133,7 +133,7 @@ const SingleVideoComponent = () => {
                         controls
                     />
                     <div className="title-edit-container">
-                        <h2 className="video-title">{title}</h2>
+                        <h2 className="single-component-video-title">{title}</h2>
                         <button className="edit-button" onClick={() => setIsEditModalOpen(true)}>Edit video</button>
                     </div>
                     <p className="video-description">{description}</p>
@@ -145,7 +145,7 @@ const SingleVideoComponent = () => {
                         restVideos.map((video, index) => (
                             <Link className="single-video-link" key={video.id} to={`/${video.id}`}>
                                 <div className="rest-video-item">
-                                    <div className="video-wrapper">
+                                    <div className="single-component-video-wrapper">
                                         <ReactPlayer
                                             ref={(element) => { playerRefs.current[index] = element; }}
                                             url={video.video_url}
@@ -155,7 +155,7 @@ const SingleVideoComponent = () => {
                                             light={isYouTubeUrl(video.video_url)}
                                             controls={false}
                                         />
-                                        <div className="video-overlay"></div>
+                                        <div className="single-component-video-overlay"></div>
                                     </div>
                                     <div className="rest-video-text-content">
                                         <p className="rest-videos-title">{video.title}</p>
