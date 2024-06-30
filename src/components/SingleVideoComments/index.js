@@ -14,7 +14,7 @@ const SingleVideoComments = ({ videoId }) => {
     useEffect(() => {
         const fetchCommentsData = async () => {
             try {
-                const commentsDataRes = await fetch(`/api/videos/comments?video_id=${videoId}`);
+                const commentsDataRes = await fetch(`https://take-home-assessment-423502.uc.r.appspot.com/api/videos/comments?video_id=${videoId}`);
                 const commentsDataResult = await commentsDataRes.json();
                 setCommentsData(commentsDataResult.comments);
             } catch (error) {

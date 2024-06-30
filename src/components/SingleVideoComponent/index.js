@@ -38,7 +38,7 @@ const SingleVideoComponent = () => {
     useEffect(() => {
         const fetchSingleVideoData = async () => {
             try {
-                const response = await fetch(`/api/videos/single?video_id=${id}`);
+                const response = await fetch(`https://take-home-assessment-423502.uc.r.appspot.com/api/videos/single?video_id=${id}`);
                 const result = await response.json();
                 const { video } = result;
 
@@ -61,7 +61,7 @@ const SingleVideoComponent = () => {
     useEffect(() => {
         const fetchAllVideos = async () => {
             try {
-                const response = await fetch("/api/videos?user_id=jandos_arinovv");
+                const response = await fetch("https://take-home-assessment-423502.uc.r.appspot.com/api/videos?user_id=jandos_arinovv");
                 const result = await response.json();
                 const filteredVideos = result.videos.filter(video => video.id !== id);
                 setRestVideos(filteredVideos);
