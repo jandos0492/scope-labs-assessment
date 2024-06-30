@@ -6,6 +6,7 @@ const EditVideoModal = ({ isOpen, onClose, videoId, currentTitle, currentDescrip
     const [title, setTitle] = useState(currentTitle);
     const [description, setDescription] = useState(currentDescription);
 
+    // Sync title and description with current props when modal is opened
     useEffect(() => {
         if (isOpen) {
             setTitle(currentTitle);
@@ -15,6 +16,7 @@ const EditVideoModal = ({ isOpen, onClose, videoId, currentTitle, currentDescrip
 
     if (!isOpen) return null;
 
+    // Handling the submission of updated video details via a PUT request.
     const handleUpdate = async (e) => {
         e.preventDefault();
 

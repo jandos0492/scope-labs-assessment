@@ -6,6 +6,7 @@ const Comments = ({ videoId }) => {
     const [commentsData, setCommentsData] = useState([]);
     const [commentsQty, setCommentsQty] = useState(0);
 
+    // Fetches comments data and updates state on mount or videoId change.
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -22,7 +23,12 @@ const Comments = ({ videoId }) => {
         fetchData();
     }, [videoId]);
 
+    // Since i am getting comments in reverse order from API that is why the 
+    // 0s index will the last comment from API.
     const latestComment = commentsData[0]
+
+    // Logic to generate a human-readable string indicating the time elapsed 
+    // since the latest comment was created.
 
     const getLatestCommentDate = () => {
         if (!latestComment) return null;

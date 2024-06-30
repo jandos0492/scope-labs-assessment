@@ -10,6 +10,7 @@ const SingleVideoComments = ({ videoId }) => {
     const [commentsData, setCommentsData] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    // Fetching the commentsData based on the video_id.
     useEffect(() => {
         const fetchCommentsData = async () => {
             try {
@@ -23,6 +24,7 @@ const SingleVideoComments = ({ videoId }) => {
         fetchCommentsData();
     }, [videoId]);
 
+    // Adding new comment to the beginning of comments data
     const addNewComment = (newComment) => {
         setCommentsData((prevCommentsData) => [newComment, ...prevCommentsData]);
     };

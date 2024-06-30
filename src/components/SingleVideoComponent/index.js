@@ -28,8 +28,13 @@ const SingleVideoComponent = () => {
 
     const { id } = useParams();
 
+    // Since there could be a lot of video on rest-videos it could be more user
+    // friendly to see the main video when he clicks to the any video from the 
+    // rest-videos
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
+    // fetching the single video based on video_id
     useEffect(() => {
         const fetchSingleVideoData = async () => {
             try {
@@ -52,6 +57,7 @@ const SingleVideoComponent = () => {
         fetchSingleVideoData();
     }, [id]);
 
+    // Getting the rest videos and filtering from the main video.
     useEffect(() => {
         const fetchAllVideos = async () => {
             try {
@@ -67,6 +73,9 @@ const SingleVideoComponent = () => {
         fetchAllVideos();
     }, [id]);
 
+    // Since i am not allowed to add the video image for preview, just added
+    // logic to make the preview for video on 7.5 second of the video
+    // This useEffect and handleRelay helps me to do it.
     useEffect(() => {
         if (isReady && playerRef.current) {
             const timeToStart = 7.5;
@@ -82,15 +91,19 @@ const SingleVideoComponent = () => {
         }
     };
 
+    // Determines if the video URL is from YouTube for handling light preview 
+    // in <ReactPlayer>.
     const isYouTubeUrl = (url) => {
         const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
         return isYouTube;
     };
 
+    // // Adds a new video to the rest of the videos list.
     const addNewVideo = (newVideo) => {
         setRestVideos((prevVideos) => [newVideo, ...prevVideos]);
     };
 
+    // Updates the title and description of the video being edited.
     const updateVideoDetails = (updatedVideo) => {
         setTitle(updatedVideo.title);
         setDescription(updatedVideo.description);

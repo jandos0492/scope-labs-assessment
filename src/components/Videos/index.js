@@ -20,6 +20,8 @@ const Videos = ({ video }) => {
         setIsReady(true);
     };
 
+    // Determines if the video URL is from YouTube for handling light preview 
+    // in <ReactPlayer>.
     const isYouTubeUrl = (url) => {
         const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
         return isYouTube;

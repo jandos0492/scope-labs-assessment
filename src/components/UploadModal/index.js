@@ -10,6 +10,7 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
 
     if (!isOpen) return null;
 
+    // Handling form submission to add a new video, sends a POST request to the API,
     const handleSubmit = async (e) => {
         e.preventDefault();
 

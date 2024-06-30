@@ -5,6 +5,7 @@ import "./SingleVideoCommentsList.css";
 
 const SingleVideoCommentsList = ({ commentsData }) => {
 
+    // Logic to convert a date string to relative time or a localized date string.
     const formatDate = (dateString) => {
         if (!dateString) {
             return "Date not available";

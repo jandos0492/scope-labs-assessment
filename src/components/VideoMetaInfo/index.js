@@ -6,6 +6,7 @@ import "./VideoMetaInfo.css";
 const VideoMetaInfo = ({ videoId, userId, createdAt }) => {
     const [commentsQty, setCommentsQty] = useState(0);
 
+    // Effect hook to fetch comments data based on videoId
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -21,6 +22,7 @@ const VideoMetaInfo = ({ videoId, userId, createdAt }) => {
         fetchData();
     }, [videoId]);
 
+    // Convert the createdAt date string into a JavaScript Date object
     const videoUploadedDate = new Date(createdAt);
 
     return (

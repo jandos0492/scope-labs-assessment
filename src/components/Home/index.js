@@ -12,6 +12,7 @@ const Home = () => {
     const [searchVideo, setSearchVideo] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    // fetching the video data for user jandos_arinovv on component mount
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -29,6 +30,7 @@ const Home = () => {
         fetchData();
     }, []);
 
+    // Updating the filteredVideoData based on searchVideo input.
     useEffect(() => {
         if (searchVideo === "") {
             setFilteredVideoData(videoData);
@@ -40,11 +42,13 @@ const Home = () => {
         }
     }, [searchVideo, videoData]);
 
+    // logic to add new video to both videoData and filteredVideoData.
     const addNewVideo = (newVideo) => {
         setVideoData((prevVideoData) => [newVideo, ...prevVideoData]);
         setFilteredVideoData((prevVideoData) => [newVideo, ...prevVideoData]);
     };
 
+    // Shows the loading infinity spin while the data fetches from Rest API
     if (loading) {
         return (
             <div className="loading">

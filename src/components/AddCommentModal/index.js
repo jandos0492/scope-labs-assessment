@@ -12,11 +12,13 @@ const AddCommentModal = ({ isOpen, onClose, addNewComment, videoId }) => {
     const handleAddComment = async (e) => {
         e.preventDefault();
 
+        // Alert if the user sends empty comment to POST request.
         if (!commentContent || !userId) {
             alert("All fields are required to add the comment.");
             return;
         }
 
+        // Logic to create the new comment.
         try {
             const newCommentRes = await fetch("/api/videos/comments", {
                 method: "POST",
