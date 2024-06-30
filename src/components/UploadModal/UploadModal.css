@@ -21,6 +21,7 @@
 }
 
 .modal-header {
+    text-align: center;
     margin-bottom: 20px !important;
 }
 
@@ -98,4 +99,34 @@ textarea.input-with-icon {
 
 textarea::placeholder {
     padding-top: 14px;
+}
+
+
+/* media queries */
+@media screen and (max-width: 700px) {
+    .modal-content {
+        width: 240px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .upload-button {
+        font-size: 12px;
+    }
+
+    .cancel-button {
+        font-size: 12px;
+    }
+
+    .modal-header {
+        font-size: 20px;
+    }
+
+    .input-with-icon {
+        font-size: 12px;
+    }
+
+    .input-with-icon::placeholder {
+        font-size: 12px;
+    }
 }
