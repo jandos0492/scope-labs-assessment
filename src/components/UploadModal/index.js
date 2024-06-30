@@ -29,7 +29,7 @@ const UploadModal = ({ isOpen, onClose, addNewVideo }) => {
             });
 
             if (newVideoRes.ok) {
-                const refreshVideoListRes = await fetch("https://take-home-assessment-423502.uc.r.appspot.com/api/videos?user_id=jandos_arinovv");
+                const refreshVideoListRes = await fetch("/api/videos?user_id=jandos_arinovv");
                 if (refreshVideoListRes.ok) {
                     const videoListData = await refreshVideoListRes.json();
                     const newVideo = videoListData.videos.find(

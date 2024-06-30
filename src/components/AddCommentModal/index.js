@@ -20,7 +20,7 @@ const AddCommentModal = ({ isOpen, onClose, addNewComment, videoId }) => {
 
         // Logic to create the new comment.
         try {
-            const newCommentRes = await fetch("https://take-home-assessment-423502.uc.r.appspot.com/api/videos/comments", {
+            const newCommentRes = await fetch("/api/videos/comments", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

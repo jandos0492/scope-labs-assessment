@@ -21,7 +21,7 @@ const EditVideoModal = ({ isOpen, onClose, videoId, currentTitle, currentDescrip
         e.preventDefault();
 
         try {
-            const response = await fetch("https://take-home-assessment-423502.uc.r.appspot.com/api/videos", {
+            const response = await fetch("/api/videos", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
